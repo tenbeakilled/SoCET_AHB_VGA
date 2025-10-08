@@ -36,6 +36,18 @@ module aftx07 #(
     output logic iopad_n_oe, //share one n_oe signal for all io pads for data pins
     output logic [DATA_WIDTH-1:0] wdata,
     input logic [DATA_WIDTH-1:0] rdata
+
+    // VGA Signals
+    input logic CLOCK_50,
+    // input logic TD_RESET_N,
+    output logic VGA_CLK,
+    output logic [7:0] VGA_R,
+    output logic [7:0] VGA_G,
+    output logic [7:0] VGA_B,
+    output logic VGA_SYNC_N,
+    output logic VGA_BLANK_N,
+    output logic VGA_HS,
+    output logic VGA_VS
 );
 
     // Enumerate interrupts -- TODO: Better way?
@@ -224,19 +236,18 @@ module aftx07 #(
 
     // VGA Subordinate
     top_vga VGAAHB(
-        .clk(CLK),
+        .clk(CLOCK_50),
         .n_rst(nRST),
-        .vga_clk(),
-        .vga_r(),
-        .vga_g(),
-        .vga_b(),
-        .vga_sync_n(),
-        .vga_blank_n(),
-        .vga_hs(),
-        .vga_vs(),
+        .vga_clk(VGA_CLK),
+        .vga_r(VGA_R),
+        .vga_g(VGA_G),
+        .vga_b(VGA_B),
+        .vga_sync_n(VGA_SYNC_N),
+        .vga_blank_n(VGA_BLANK_N),
+        .vga_hs(VGA_HS),
+        .vga_vs(VGA_VS),
         .busif(vga_protif)
     );
-
 
     /*****************
     * APB Peripherals
@@ -434,7 +445,8 @@ module aftx07 #(
     `ADD_AHB(rom, ROM_AHB_IDX, ROM_N_WORDS, rom_protif)
     `ADD_AHB(ff_ram, MEMORY_AHB_IDX, FF_RAM_N_WORDS, ffram_protif)
     `ADD_AHB(memory_controller, SRAM_AHB_IDX, SRAM_N_WORDS, memory_protif)
-    `ADD_AHB(vga, VGA_AHB_IDX, 16, vga_protif)
+    
+    `ADD_AHB(vga, VGA_AHB_IDX, 16, vga_protif) // vga
 
     `ADD_APB(gpio0, GPIO0_APB_IDX, 8, gpio_protifs[0])
     `ADD_APB(gpio1, GPIO1_APB_IDX, 8, gpio_protifs[1])
