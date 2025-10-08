@@ -3,7 +3,7 @@ module frame_buffer #(
     parameter int DATA_WIDTH = 32,
     parameter int FRAME_WIDTH = 320,
     parameter int FRAME_HEIGHT = 240,
-    parameter int MEM_DEPTH = 33554432
+    parameter int MEM_DEPTH = 153600
 )(
     input logic clk,
     input logic n_rst,
