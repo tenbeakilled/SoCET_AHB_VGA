@@ -25,8 +25,7 @@ module frame_buffer #(
 
     // Writing
     always_ff @(posedge clk, negedge n_rst) begin
-        if(!n_rst) for (int i = 0; i < MEM_DEPTH; i++) mem[i] <= '0;
-        else if(wen) mem[waddr] <= wdata;
+        if(wen) mem[waddr] <= wdata;
     end
 
     // Reading

@@ -25,7 +25,8 @@
         localparam int PLIC_AHB_IDX     = 7;
         localparam int PRINTER_AHB_IDX  = 8;
         localparam int MT_AHB_IDX       = 9;
-        localparam int AHB_NSUBORDINATES = 10;
+        localparam int VGA_AHB_IDX      = 10;
+        localparam int AHB_NSUBORDINATES = 11; // originally was 10
 
         localparam logic [31:0] AHB_MAP [AHB_NSUBORDINATES] = '{
             32'h400,
@@ -37,7 +38,8 @@
             32'h90010000,
             32'hA0000000,
             32'hB0000000,
-            32'hC0000000
+            32'hC0000000,
+            32'hD0000000
         };
 
         localparam int GPIO0_APB_IDX = 0;
@@ -74,7 +76,8 @@
         localparam int CLINT_AHB_IDX     = 6;
         localparam int PLIC_AHB_IDX      = 7;
         localparam int MT_AHB_IDX        = 8;
-        localparam int AHB_NSUBORDINATES = 9;
+        localparam int VGA_AHB_IDX       = 9;
+        localparam int AHB_NSUBORDINATES = 10; // originally was 9
 
         localparam logic [31:0] AHB_MAP [AHB_NSUBORDINATES] = '{
             32'h400,
@@ -85,7 +88,8 @@
             32'h90002000,
             32'h90010000,
             32'hA0000000,
-            32'hC0000000
+            32'hC0000000,
+            32'hD0000000
         };
         
         localparam int GPIO0_APB_IDX = 0;
