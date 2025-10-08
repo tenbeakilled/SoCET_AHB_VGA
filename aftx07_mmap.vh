@@ -89,7 +89,7 @@
             32'h90010000,
             32'hA0000000,
             32'hC0000000,
-            32'hD0000000
+            32'hD0000000 //vga 
         };
         
         localparam int GPIO0_APB_IDX = 0;
